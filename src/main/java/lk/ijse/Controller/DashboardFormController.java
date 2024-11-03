@@ -2,9 +2,12 @@ package lk.ijse.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class DashboardFormController {
 
@@ -43,8 +46,11 @@ public class DashboardFormController {
     }
 
     @FXML
-    void btnProgramOnAction(ActionEvent event) {
+    void btnProgramOnAction(ActionEvent event) throws IOException {
+        AnchorPane coursePane = FXMLLoader.load(this.getClass().getResource("/view/CourseForm.fxml"));
 
+        anpMain.getChildren().clear();
+        anpMain.getChildren().add(coursePane);
     }
 
     @FXML
@@ -53,8 +59,11 @@ public class DashboardFormController {
     }
 
     @FXML
-    void btnUserOnAction(ActionEvent event) {
+    void btnUserOnAction(ActionEvent event) throws IOException {
+        AnchorPane userPane = FXMLLoader.load(this.getClass().getResource("/view/UserForm.fxml"));
 
+        anpMain.getChildren().clear();
+        anpMain.getChildren().add(userPane);
     }
 
 }

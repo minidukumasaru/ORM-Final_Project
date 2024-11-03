@@ -34,5 +34,5 @@ public class LauncherWrapper extends Application {
         stage.setTitle("Login Form");
         stage.show();
     }
-    }
+
 }
