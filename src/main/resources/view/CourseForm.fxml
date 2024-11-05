@@ -4,37 +4,78 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CourseFormController">
+<AnchorPane prefHeight="800.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.CourseFormController">
    <children>
-      <AnchorPane fx:id="anpCourse" layoutX="-6.0" layoutY="-5.0" prefHeight="616.0" prefWidth="829.0">
+      <ImageView fitHeight="800.0" fitWidth="1020.0">
+         <image>
+            <Image url="@../images/black-wooden-surface-with-fresh-herbs-spices-and-lemon-free-photo.jpeg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="anpCourse" layoutX="90.0" layoutY="47.0" opacity="0.88" prefHeight="700.0" prefWidth="820.0" style="-fx-background-color: white;">
          <children>
-            <Text layoutX="326.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COURSE  FORM">
+            <Text layoutX="254.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COURSE  FORM">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="txtDuration" layoutX="146.0" layoutY="209.0" onAction="#txtDurationOnAction" promptText="duartion" />
-            <TextField fx:id="txtFree" layoutX="370.0" layoutY="209.0" onAction="#txtFreeOnAction" promptText="free" />
-            <TextField fx:id="txtName" layoutX="370.0" layoutY="153.0" onAction="#txtNameOnAction" promptText="name" />
-            <TextField fx:id="txtId" layoutX="146.0" layoutY="153.0" onAction="#txtIdOnAction" promptText="id" />
-            <Button fx:id="btnSave" layoutX="146.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnSaveOnAction" text="SAVE" />
-            <Button fx:id="btnUpdate" layoutX="296.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" text="update" />
-            <Button fx:id="btnDelete" layoutX="460.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" text="delete" />
-            <Button fx:id="btnClear" layoutX="585.0" layoutY="296.0" mnemonicParsing="false" onAction="#btnClearOnAction" text="clear" />
-            <TextField fx:id="txtSearch" layoutX="563.0" layoutY="179.0" promptText="search" />
-            <TableView fx:id="tblCourse" layoutX="146.0" layoutY="350.0" prefHeight="200.0" prefWidth="580.0">
+            <TextField fx:id="txtDuration" layoutX="157.0" layoutY="274.0" onAction="#txtDurationOnAction" prefHeight="35.0" prefWidth="181.0" promptText="duartion" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtFree" layoutX="410.0" layoutY="274.0" onAction="#txtFreeOnAction" prefHeight="35.0" prefWidth="181.0" promptText="free" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtName" layoutX="410.0" layoutY="192.0" onAction="#txtNameOnAction" prefHeight="35.0" prefWidth="181.0" promptText="name" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtId" layoutX="155.0" layoutY="192.0" onAction="#txtIdOnAction" prefHeight="35.0" prefWidth="181.0" promptText="id" style="-fx-background-radius: 5;" />
+            <Button fx:id="btnSave" layoutX="658.0" layoutY="257.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="35.0" prefWidth="102.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: #2D7DBC;" text="SAVE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="btnUpdate" layoutX="658.0" layoutY="315.0" mnemonicParsing="false" onAction="#btnUpdateOnAction" prefHeight="35.0" prefWidth="102.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: #67A03F;" text="UPDATE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font></Button>
+            <Button fx:id="btnDelete" layoutX="658.0" layoutY="372.0" mnemonicParsing="false" onAction="#btnDeleteOnAction" prefHeight="35.0" prefWidth="102.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: #F3371A;" text="DELETE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="btnClear" layoutX="658.0" layoutY="203.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="35.0" prefWidth="102.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: #F2AF3A;" text="CLEAR">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font></Button>
+            <TextField fx:id="txtSearch" layoutX="561.0" layoutY="37.0" prefHeight="35.0" prefWidth="236.0" promptText="search" style="-fx-background-radius: 5; -fx-border-color: blue; -fx-border-radius: 5;" />
+            <TableView fx:id="tblCourse" layoutX="63.0" layoutY="467.0" prefHeight="200.0" prefWidth="697.0">
                <columns>
                   <TableColumn fx:id="colId" prefWidth="112.80001831054688" text="ID" />
-                  <TableColumn fx:id="colName" prefWidth="226.39996337890625" text="NAME" />
-                  <TableColumn fx:id="colDuration" prefWidth="109.60006713867188" text="DURATION" />
-                  <TableColumn fx:id="colFree" prefWidth="132.79998779296875" text="FREE" />
+                  <TableColumn fx:id="colName" prefWidth="193.0" text="NAME" />
+                  <TableColumn fx:id="colDuration" prefWidth="204.0" text="DURATION" />
+                  <TableColumn fx:id="colFree" prefWidth="185.0" text="FREE" />
                </columns>
             </TableView>
+            <Line endX="192.0" layoutX="322.0" layoutY="76.0" startX="-108.0" stroke="RED" strokeWidth="3.0" />
+            <Line endX="-85.0" endY="-64.0" layoutX="332.0" layoutY="86.0" startX="-85.0" strokeWidth="3.0" />
+            <Text layoutX="161.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COURSE ID">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="162.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DURATION">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="414.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COURSE NAME">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text layoutX="415.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="COURSE FEE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

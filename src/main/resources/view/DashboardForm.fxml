@@ -7,98 +7,96 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DashboardFormController">
+<AnchorPane prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DashboardFormController">
    <children>
-      <AnchorPane layoutX="-5.0" layoutY="-5.0" prefHeight="676.0" prefWidth="920.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="-6.0" layoutY="-4.0" prefHeight="800.0" prefWidth="1300.0" style="-fx-background-color: black;">
          <children>
-            <AnchorPane fx:id="anpMain" layoutX="225.0" layoutY="63.0" prefHeight="613.0" prefWidth="722.0" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" />
-            <Button fx:id="btnDashboard" layoutX="-4.0" layoutY="224.0" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="54.0" prefWidth="208.0" styleClass="textFieldRedius" stylesheets="@../css/DashFie.css" text="DASHBOARD">
+            <AnchorPane fx:id="anpMain" layoutX="289.0" prefHeight="800.0" prefWidth="1020.0" style="-fx-background-color: white;" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" />
+            <Button fx:id="btnDashboard" layoutX="6.0" layoutY="249.0" mnemonicParsing="false" onAction="#btnDashboardOnAction" prefHeight="54.0" prefWidth="283.0" style="-fx-background-color: white;" styleClass="textFieldRedius" stylesheets="@../css/DashFie.css" text="DASHBOARD">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnUser" layoutY="284.0" mnemonicParsing="false" onAction="#btnUserOnAction" prefHeight="54.0" prefWidth="208.0" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" text="USER">
+            <Button fx:id="btnUser" layoutX="6.0" layoutY="331.0" mnemonicParsing="false" onAction="#btnUserOnAction" prefHeight="54.0" prefWidth="283.0" style="-fx-background-color: white;" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" text="USER">
                <styleClass>
                   <String fx:value="logout1" />
                   <String fx:value="textFieldRedius" />
                </styleClass>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnStudent" layoutY="354.0" mnemonicParsing="false" onAction="#btnStudentOnAction" prefHeight="54.0" prefWidth="208.0" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" text="STUDENT">
+            <Button fx:id="btnStudent" layoutX="6.0" layoutY="411.0" mnemonicParsing="false" onAction="#btnStudentOnAction" prefHeight="54.0" prefWidth="283.0" style="-fx-background-color: white;" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" text="STUDENT">
                <styleClass>
                   <String fx:value="logout1" />
                   <String fx:value="textFieldRedius" />
                </styleClass>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnProgram" layoutY="419.0" mnemonicParsing="false" onAction="#btnProgramOnAction" prefHeight="54.0" prefWidth="208.0" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" text="PROGRAM">
+            <Button fx:id="btnProgram" layoutX="6.0" layoutY="493.0" mnemonicParsing="false" onAction="#btnProgramOnAction" prefHeight="54.0" prefWidth="283.0" style="-fx-background-color: white;" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" text="PROGRAM">
                <styleClass>
                   <String fx:value="logout1" />
                   <String fx:value="textFieldRedius" />
                </styleClass>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <Button fx:id="btnPayment" layoutX="-3.0" layoutY="485.0" mnemonicParsing="false" onAction="#btnPaymentOnAction" prefHeight="54.0" prefWidth="208.0" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" text="PAYMENT">
+            <Button fx:id="btnPayment" layoutX="6.0" layoutY="575.0" mnemonicParsing="false" onAction="#btnPaymentOnAction" prefHeight="54.0" prefWidth="283.0" style="-fx-background-color: white;" stylesheets="@../../../../../Asha-ORM-Final-Project/src/main/resources/css/DashFile.css" text="PAYMENT">
                <styleClass>
                   <String fx:value="logout1" />
                   <String fx:value="textFieldRedius" />
                </styleClass>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="75.0" fitWidth="80.0" layoutX="14.0" layoutY="14.0">
-               <image>
-                  <Image url="@../../../../../Asha-ORM-Final-Project/src/main/resources/images/cook.jpg" />
-               </image>
-            </ImageView>
-            <Text layoutX="104.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ECOOK" wrappingWidth="80.0">
+            <Label fx:id="lblCurrentUser" layoutX="76.0" layoutY="742.0" prefHeight="43.0" prefWidth="170.0" textFill="WHITE">
                <font>
-                  <Font name="Sylfaen" size="21.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="36.0" fitWidth="40.0" layoutX="24.0" layoutY="229.0">
+                  <Font name="System Bold" size="18.0" />
+               </font></Label>
+            <Label layoutX="24.0" layoutY="666.0" text="DATE" />
+            <Label fx:id="lblDate" layoutX="91.0" layoutY="665.0" prefHeight="18.0" prefWidth="142.0" text="Label" />
+            <ImageView fitHeight="231.0" fitWidth="257.0" layoutX="17.0" layoutY="-2.0">
                <image>
-                  <Image url="@../../../../../Asha-ORM-Final-Project/src/main/resources/images/icons8-dashboard-96.png" />
+                  <Image url="@../images/Untitled.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="48.0" layoutX="20.0" layoutY="290.0">
+            <ImageView layoutX="17.0" layoutY="333.0">
                <image>
-                  <Image url="@../../../../../Asha-ORM-Final-Project/src/main/resources/images/icons8-user-96.png" />
+                  <Image url="@../images/icons8-user-50.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="48.0" layoutX="20.0" layoutY="425.0">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="17.0" layoutY="495.0">
                <image>
-                  <Image url="@../../../../../Asha-ORM-Final-Project/src/main/resources/images/icons8-courses-64.png" />
+                  <Image url="@../images/icons8-courses-64.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="48.0" fitWidth="48.0" layoutX="20.0" layoutY="488.0">
+            <ImageView layoutX="17.0" layoutY="577.0">
                <image>
-                  <Image url="@../../../../../Asha-ORM-Final-Project/src/main/resources/images/icons8-payment-96.png" />
+                  <Image url="@../images/icons8-payment-50.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="16.0" layoutY="351.0">
+            <ImageView layoutX="17.0" layoutY="413.0">
                <image>
-                  <Image url="@../../../../../Asha-ORM-Final-Project/src/main/resources/images/icons8-student-96.png" />
+                  <Image url="@../images/icons8-student-50.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="48.0" layoutX="735.0" layoutY="14.0">
+            <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="17.0" layoutY="251.0">
                <image>
-                  <Image url="@../../../../../Asha-ORM-Final-Project/src/main/resources/images/icons8-user-96.png" />
+                  <Image url="@../images/icons8-dashboard-80.png" />
                </image>
             </ImageView>
-            <Label fx:id="lblCurrentUser" layoutX="792.0" layoutY="24.0" prefHeight="21.0" prefWidth="102.0" text="Label" />
-            <Label layoutX="263.0" layoutY="26.0" text="DATE" />
-            <Label fx:id="lblDate" layoutX="321.0" layoutY="26.0" prefHeight="18.0" prefWidth="142.0" text="Label" />
+            <ImageView fitHeight="64.0" fitWidth="64.0" layoutX="22.0" layoutY="731.0">
+            </ImageView>
+            <ImageView fitHeight="36.0" fitWidth="36.0" layoutX="33.0" layoutY="745.0">
+               <image>
+                  <Image url="@../images/icons8-user-clock-50(1).png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
