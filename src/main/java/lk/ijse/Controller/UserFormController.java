@@ -184,6 +184,7 @@ public class UserFormController {
     void btnClearOnAction(ActionEvent event) throws IOException {
         clearFields();
         generateNewId();
+        setTable();
     }
 
     @FXML
@@ -201,6 +202,7 @@ public class UserFormController {
         }
         clearFields();
         setTable();
+        generateNewId();
     }
 
     @FXML
@@ -244,6 +246,7 @@ public class UserFormController {
         }
         clearFields();
         setTable();
+        generateNewId();
     }
 
     @FXML
