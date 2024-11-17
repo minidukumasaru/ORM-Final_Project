@@ -16,6 +16,7 @@ import lk.ijse.Dao.DaoFactory;
 import lk.ijse.Dto.UserDto;
 import lk.ijse.Entity.User;
 import lk.ijse.EntityTm.UserTm;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -107,7 +108,13 @@ public class UserFormController {
     private void setTable() throws IOException {
         List<User> userList = userBo.getUserList();
         for(User user : userList){
-            UserTm userTm = new UserTm(user.getUser_id(),user.getUsername(),user.getUser_email(),user.getUser_phone(),user.getUser_role(),user.getUser_date());
+            UserTm userTm = new UserTm(
+                    user.getUser_id(),
+                    user.getUsername(),
+                    user.getUser_email(),
+                    user.getUser_phone(),
+                    user.getUser_role()
+                    );
             userTmObservableList.add(userTm);
         }
         tblUser.setItems(userTmObservableList);
@@ -119,7 +126,6 @@ public class UserFormController {
         colRole.setCellValueFactory(new PropertyValueFactory<>("user_role"));
         colEmail.setCellValueFactory(new PropertyValueFactory<>("user_email"));
         colContact.setCellValueFactory(new PropertyValueFactory<>("user_phone"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("user_date"));
     }
 
     private void setDate() {
@@ -135,7 +141,6 @@ public class UserFormController {
             txtUsername.setText(userTm.getUsername());
             txtEmail.setText(userTm.getUser_email());
             txtContact.setText(userTm.getUser_phone());
-            txtDate.setText(userTm.getUser_date().toString());
             txtRole.setText(userTm.getUser_role());
         });
     }
@@ -210,18 +215,20 @@ public class UserFormController {
         String id = txtUserId.getText();
         String role = txtRole.getText();
         String username = txtUsername.getText();
-        String password = txtPassword.getText();
-        Date date = Date.valueOf(txtDate.getText());
+        String rawPassword = txtPassword.getText();
         String email = txtEmail.getText();
         String contact = txtContact.getText();
 
-        UserDto userDto = new UserDto(id, username, password, email, contact, role, date);
-        if(userBo.save(userDto)){
+        // Hash the password using BCrypt
+        String hashedPassword = BCrypt.hashpw(rawPassword, BCrypt.gensalt());
+
+        UserDto userDto = new UserDto(id, username, hashedPassword, email, contact, role);
+        if (userBo.save(userDto)) {
             clearFields();
             txtUserId.setText(generateNewId());
             new Alert(Alert.AlertType.CONFIRMATION, "User Added Successfully!").show();
-        }else {
-            new Alert(Alert.AlertType.ERROR,"SQL Error").show();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "SQL Error").show();
         }
         clearFields();
         setTable();
@@ -234,11 +241,10 @@ public class UserFormController {
         String role = txtRole.getText();
         String username = txtUsername.getText();
         String password = txtPassword.getText();
-        Date date = Date.valueOf(txtDate.getText());
         String email = txtEmail.getText();
         String contact = txtContact.getText();
 
-        UserDto userDto = new UserDto(id, username, password, email, contact, role,date);
+        UserDto userDto = new UserDto(id, username, password, email, contact, role);
         if(userBo.update(userDto)){
             new Alert(Alert.AlertType.CONFIRMATION, "User Updated Successfully!").show();
         }else {

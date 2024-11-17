@@ -18,8 +18,9 @@ public class Student {
     private String stu_address;
     private String stu_phone;
     private Date date;
+    private int status;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Student_Course> studentCourses;
 
     @ManyToOne

@@ -9,7 +9,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class DashboardFormController {
+public class MainFormController {
 
     @FXML
     private AnchorPane anpMain;
@@ -36,12 +36,19 @@ public class DashboardFormController {
     private Label lblDate;
 
     @FXML
-    void btnDashboardOnAction(ActionEvent event) {
+    void btnDashboardOnAction(ActionEvent event) throws IOException {
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/DashboardForm.fxml"));
 
+        anpMain.getChildren().clear();
+        anpMain.getChildren().add(dashboardPane);
     }
 
     @FXML
-    void btnPaymentOnAction(ActionEvent event) {
+    void btnPaymentOnAction(ActionEvent event) throws IOException {
+        AnchorPane paymentPane = FXMLLoader.load(this.getClass().getResource("/view/PaymentForm.fxml"));
+
+        anpMain.getChildren().clear();
+        anpMain.getChildren().add(paymentPane);
 
     }
 

@@ -2,10 +2,12 @@ package lk.ijse.Dao.Custom.Impl;
 
 import lk.ijse.Dao.Custom.UserDao;
 import lk.ijse.Entity.User;
-import lk.ijse.Util.FactoryConfiguration;
+import lk.ijse.Config.FactoryConfiguration;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -122,20 +124,94 @@ public class UserDaoImpl implements UserDao {
             NativeQuery<User> query = session.createNativeQuery("SELECT * FROM User U WHERE U.user_id = :id", User.class);
             query.setParameter("id",value);
 
-            user = query.uniqueResult(); // Execute query and set the result to customer
+            user = query.uniqueResult();
 
-            transaction.commit(); // Commit the transaction if successful
+            transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
-                transaction.rollback(); // Rollback transaction if an error occurs
+                transaction.rollback();
             }
-            e.printStackTrace(); // Log the exception for debugging
+            e.printStackTrace();
         } finally {
             if (session != null) {
-                session.close(); // Ensure session is closed
+                session.close();
             }
         }
 
         return user;
+    }
+
+    @Override
+    public boolean checkCredential(String username, String pw) {
+        Session session = null;
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            session.beginTransaction();
+
+            String hql = "SELECT u.password FROM User u WHERE u.username = :username";
+            Query<String> query = session.createQuery(hql, String.class);
+            query.setParameter("username", username);
+
+            List<String> resultList = query.getResultList();
+
+            if (resultList.size() == 1) {
+                String dbPw = resultList.get(0);
+                return BCrypt.checkpw(pw, dbPw);
+            }
+            return false; // Username not found or password mismatch
+
+        } catch (Exception e) {
+            if (session != null && session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            // Get the session and start a transaction
+            session = FactoryConfiguration.getInstance().getSession();
+            transaction = session.beginTransaction();
+
+            // Update the user entity in the database
+            session.update(user);
+
+            // Commit the transaction
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback(); // Rollback if an error occurs
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (session != null) {
+                session.close(); // Close the session
+            }
+        }
+    }
+
+    @Override
+    public String getUserRole(String username) {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            String hql = "SELECT u.user_role FROM User u WHERE u.username = :username";
+            Query<String> query = session.createQuery(hql, String.class);
+            query.setParameter("username", username);
+
+            return query.uniqueResult();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null; // Handle or log the exception appropriately
+        }
     }
 }

@@ -12,4 +12,9 @@ public interface UserDao extends CrudDao<User> {
     List<String> getUserId();
 
     User getUserById(String value);
+    boolean checkCredential(String username, String password);
+
+    boolean updateUser(User user);
+
+    String getUserRole(String username);
 }

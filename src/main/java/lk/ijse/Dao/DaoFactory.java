@@ -1,8 +1,6 @@
 package lk.ijse.Dao;
 
-import lk.ijse.Dao.Custom.Impl.CourseDaoImpl;
-import lk.ijse.Dao.Custom.Impl.StudentDaoImpl;
-import lk.ijse.Dao.Custom.Impl.UserDaoImpl;
+import lk.ijse.Dao.Custom.Impl.*;
 
 public class DaoFactory {
 
@@ -13,7 +11,7 @@ public class DaoFactory {
         return daoFactory == null ? daoFactory = new DaoFactory() : daoFactory;
     }
     public enum DaoType{
-        USER,COURSE,STUDENT
+        USER,COURSE,STUDENT,PAYMENT,STUDENT_COURSE
     }
     public SuperDao getDaoType(DaoType daoType){
         switch (daoType){
@@ -23,6 +21,10 @@ public class DaoFactory {
                 return new CourseDaoImpl();
             case STUDENT:
                 return new StudentDaoImpl();
+            case PAYMENT:
+                return new PaymentDaoImpl();
+            case STUDENT_COURSE:
+                return new StudentCourseDaoImpl();
             default:
                 return null;
         }

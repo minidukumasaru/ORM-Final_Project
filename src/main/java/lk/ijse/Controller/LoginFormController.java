@@ -8,6 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import lk.ijse.Dao.Custom.UserDao;
+import lk.ijse.Dao.DaoFactory;
 
 import java.io.IOException;
 
@@ -25,6 +27,8 @@ public class LoginFormController {
     @FXML
     private TextField txtUsername;
 
+    UserDao userDao = (UserDao) DaoFactory.getDaoFactory().getDaoType(DaoFactory.DaoType.USER);
+    String username;
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/DashboardForm.fxml"));
