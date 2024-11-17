@@ -5,6 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -27,12 +28,17 @@
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Text>
-            <TextField fx:id="txtPassword" layoutX="65.0" layoutY="350.0" prefHeight="51.0" prefWidth="365.0" promptText="password" style="-fx-background-radius: 15;" />
-            <Text layoutX="71.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PASSWORD">
+            <TextField fx:id="txtPassword" layoutX="65.0" layoutY="339.0" prefHeight="51.0" prefWidth="365.0" promptText="password" style="-fx-background-radius: 15;" />
+            <Text layoutX="71.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PASSWORD">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Text>
-            <Button fx:id="btnLogin" layoutX="156.0" layoutY="457.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="42.0" prefWidth="186.0" style="-fx-border-radius: 15; -fx-border-color: red; -fx-background-color: white;" text="LOGIN">
+            <Button fx:id="btnForgotPassword" layoutX="151.0" layoutY="478.0" mnemonicParsing="false" onAction="#btnForgotPasswordOnAction" prefHeight="35.0" prefWidth="202.0" style="-fx-background-color: white;" text="forgot password?">
+               <font>
+                  <Font name="System Bold Italic" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnLogin" layoutX="156.0" layoutY="426.0" mnemonicParsing="false" onAction="#btnLoginOnAction" prefHeight="42.0" prefWidth="186.0" style="-fx-border-radius: 15; -fx-border-color: red; -fx-background-color: white;" text="LOGIN">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
@@ -41,6 +47,7 @@
                   <Image url="@../images/163044-b551ef20-f105-4d6d-9728-50e9aff6de96.jpg" />
                </image>
             </ImageView>
+            <Line endX="36.0" layoutX="282.0" layoutY="506.0" startX="-100.0" />
          </children>
       </AnchorPane>
    </children>

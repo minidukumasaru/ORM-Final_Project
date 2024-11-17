@@ -15,6 +15,7 @@ import java.io.IOException;
 
 public class LoginFormController {
 
+    public Button btnForgotPassword;
     @FXML
     private AnchorPane anpDashboard;
 
@@ -31,7 +32,7 @@ public class LoginFormController {
     String username;
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/DashboardForm.fxml"));
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/MainForm.fxml"));
         AnchorPane anchorPane = loader.load();
 
         Scene scene = new Scene(anchorPane);
@@ -45,4 +46,6 @@ public class LoginFormController {
         anpDashboard.getScene().getWindow().hide();
     }
 
+    public void btnForgotPasswordOnAction(ActionEvent actionEvent) {
+    }
 }

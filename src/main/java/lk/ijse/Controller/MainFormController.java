@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class MainFormController {
 
+    public Button btnSettings;
     @FXML
     private AnchorPane anpMain;
 
@@ -37,7 +38,7 @@ public class MainFormController {
 
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/DashboardForm.fxml"));
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/MainForm.fxml"));
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(dashboardPane);
@@ -76,4 +77,6 @@ public class MainFormController {
         anpMain.getChildren().add(userPane);
     }
 
+    public void btnSettingsOnAction(ActionEvent actionEvent) {
+    }
 }
