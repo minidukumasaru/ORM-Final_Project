@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
     public boolean delete(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        NativeQuery<User> nativeQuery = session.createNativeQuery("delete from User where user_id = :id");
+        NativeQuery<User> nativeQuery = session.createNativeQuery("delete from user where user_id = :id");
         nativeQuery.setParameter("id", id);
         nativeQuery.executeUpdate();
         transaction.commit();
@@ -55,7 +55,7 @@ public class UserDaoImpl implements UserDao {
     public List<User> getAll() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        NativeQuery query = session.createNativeQuery("SELECT * FROM User");
+        NativeQuery query = session.createNativeQuery("SELECT * FROM user");
         query.addEntity(User.class);
         List<User> resultList = query.getResultList();
         transaction.commit();
@@ -121,7 +121,7 @@ public class UserDaoImpl implements UserDao {
             session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
 
-            NativeQuery<User> query = session.createNativeQuery("SELECT * FROM User U WHERE U.user_id = :id", User.class);
+            NativeQuery<User> query = session.createNativeQuery("SELECT * FROM user U WHERE U.user_id = :id", User.class);
             query.setParameter("id",value);
 
             user = query.uniqueResult();

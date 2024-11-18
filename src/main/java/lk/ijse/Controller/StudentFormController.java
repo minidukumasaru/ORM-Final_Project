@@ -259,6 +259,7 @@ public class StudentFormController {
             Student newStudent = studentDao.getStudentById(studentId);
             registerStudentForCourse(newStudent);
         }
+        System.out.println("hellooooooooooo");
         setTable();
         new Alert(Alert.AlertType.INFORMATION, "Student Added With Course Successfully!").show();
     }
@@ -291,6 +292,7 @@ public class StudentFormController {
         } else {
             System.out.println("Selected course not found.");
         }
+        setTable();
     }
 
     @FXML

@@ -91,7 +91,7 @@ public class UserFormController {
     ObservableList<UserTm> userTmObservableList = FXCollections.observableArrayList();
 
     public void initialize() throws IOException {
-        setDate();
+//        setDate();
         setCellValueFactory();
         setTable();
         selectTableRow();
@@ -106,6 +106,7 @@ public class UserFormController {
     }
 
     private void setTable() throws IOException {
+        userTmObservableList.clear();
         List<User> userList = userBo.getUserList();
         for(User user : userList){
             UserTm userTm = new UserTm(
@@ -116,6 +117,7 @@ public class UserFormController {
                     user.getUser_role()
                     );
             userTmObservableList.add(userTm);
+
         }
         tblUser.setItems(userTmObservableList);
     }
@@ -128,10 +130,10 @@ public class UserFormController {
         colContact.setCellValueFactory(new PropertyValueFactory<>("user_phone"));
     }
 
-    private void setDate() {
-        LocalDate now = LocalDate.now();
-        txtDate.setText(String.valueOf(now));
-    }
+//    private void setDate() {
+//        LocalDate now = LocalDate.now();
+//        txtDate.setText(String.valueOf(now));
+//    }
 
     private void selectTableRow() {
         tblUser.setOnMouseClicked(mouseEvent -> {
@@ -147,7 +149,6 @@ public class UserFormController {
 
     public void clearFields(){
         txtContact.clear();
-        txtDate.clear();
         txtEmail.clear();
         txtPassword.clear();
         txtRole.clear();

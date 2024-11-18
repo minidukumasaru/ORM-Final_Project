@@ -28,6 +28,11 @@ import java.util.Optional;
 
 public class PaymentFormController {
 
+    public Label lblBalanceAmount;
+    public ComboBox comboPayHistory;
+    public Label lblUpfrontAmount;
+    public Label lblStatus;
+    public Label lblDate;
     @FXML
     private AnchorPane anpPayment;
 
@@ -297,4 +302,6 @@ public class PaymentFormController {
 
     }
 
+    public void comboPayHistoryOnAction(ActionEvent actionEvent) {
+    }
 }

@@ -51,7 +51,7 @@ public class StudentDaoImpl implements StudentDao {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
         NativeQuery<Student> nativeQuery = session.createNativeQuery
-                ("update Student set status = 0 where stu_id = :id");
+                ("update student set status = 0 where stu_id = :id");
         nativeQuery.setParameter("id", id);
         nativeQuery.executeUpdate();
         transaction.commit();
@@ -68,7 +68,7 @@ public class StudentDaoImpl implements StudentDao {
     public List<Student> getAll() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        NativeQuery query = session.createNativeQuery("SELECT * FROM Student where status = 1");
+        NativeQuery query = session.createNativeQuery("SELECT * FROM student where status = 1");
         query.addEntity(Student.class);
         List<Student> resultList = query.getResultList();
         transaction.commit();
@@ -108,7 +108,7 @@ public class StudentDaoImpl implements StudentDao {
             session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
 
-            NativeQuery<Student> query = session.createNativeQuery("SELECT * FROM Student WHERE stu_id = :id", Student.class);
+            NativeQuery<Student> query = session.createNativeQuery("SELECT * FROM student WHERE stu_id = :id", Student.class);
             query.setParameter("id", text);
 
             student = query.uniqueResult();

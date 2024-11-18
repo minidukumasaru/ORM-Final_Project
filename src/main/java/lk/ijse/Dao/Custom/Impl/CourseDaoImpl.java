@@ -38,7 +38,7 @@ public class CourseDaoImpl implements CourseDao {
     public boolean delete(String id) throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        NativeQuery<User> nativeQuery = session.createNativeQuery("delete from Course where course_id = :id");
+        NativeQuery<User> nativeQuery = session.createNativeQuery("delete from course where course_id = :id");
         nativeQuery.setParameter("id", id);
         nativeQuery.executeUpdate();
         transaction.commit();
@@ -55,7 +55,7 @@ public class CourseDaoImpl implements CourseDao {
         try {
             transaction = session.beginTransaction();
 
-            NativeQuery<Course> nativeQuery = session.createNativeQuery("SELECT * FROM Course WHERE course_id = :id", Course.class);
+            NativeQuery<Course> nativeQuery = session.createNativeQuery("SELECT * FROM course WHERE course_id = :id", Course.class);
             nativeQuery.setParameter("id", id);
 
             course = nativeQuery.uniqueResult();
@@ -77,7 +77,7 @@ public class CourseDaoImpl implements CourseDao {
     public List<Course> getAll() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        NativeQuery query = session.createNativeQuery("SELECT * FROM Course");
+        NativeQuery query = session.createNativeQuery("SELECT * FROM course");
         query.addEntity(Course.class);
         List<Course> resultList = query.getResultList();
         transaction.commit();
@@ -169,7 +169,7 @@ public class CourseDaoImpl implements CourseDao {
             session = FactoryConfiguration.getInstance().getSession();
             transaction = session.beginTransaction();
 
-            NativeQuery<Course> query = session.createNativeQuery("SELECT * FROM Course WHERE course_id = :id", Course.class);
+            NativeQuery<Course> query = session.createNativeQuery("SELECT * FROM course WHERE course_id = :id", Course.class);
             query.setParameter("id", courseId);
 
             course = query.uniqueResult(); // Execute query and set the result to customer

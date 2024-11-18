@@ -35,7 +35,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
     public List<Student_Course> getAll() throws IOException {
         Session session = FactoryConfiguration.getInstance().getSession();
         Transaction transaction = session.beginTransaction();
-        NativeQuery query = session.createNativeQuery("SELECT * FROM Student_Course");
+        NativeQuery query = session.createNativeQuery("SELECT * FROM student_course");
         query.addEntity(Student_Course.class);
         List<Student_Course> resultList = query.getResultList();
         transaction.commit();
@@ -54,7 +54,7 @@ public class StudentCourseDaoImpl implements StudentCourseDao {
             transaction = session.beginTransaction();
 
             NativeQuery<Student_Course> query = session.createNativeQuery
-                    ("SELECT * FROM Student_Course WHERE student_course_id = :id", Student_Course.class);
+                    ("SELECT * FROM student_course WHERE student_course_id = :id", Student_Course.class);
             query.setParameter("id", value);
 
             student_course = query.uniqueResult(); // Execute query and set the result to customer

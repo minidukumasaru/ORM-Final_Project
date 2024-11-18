@@ -11,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name = "student")
 public class Student {
     @Id
     private String stu_id;
