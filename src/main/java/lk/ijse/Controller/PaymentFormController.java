@@ -16,6 +16,7 @@ import lk.ijse.Dao.Custom.PaymentDao;
 import lk.ijse.Dao.Custom.StudentCourseDao;
 import lk.ijse.Dao.DaoFactory;
 import lk.ijse.Dto.PaymentDto;
+import lk.ijse.Entity.Payment;
 import lk.ijse.Entity.Student;
 import lk.ijse.Entity.Student_Course;
 import lk.ijse.EntityTm.PaymentTm;
@@ -102,19 +103,33 @@ public class PaymentFormController {
     ObservableList<String> studentObservableList = FXCollections.observableArrayList();
     ObservableList<PaymentTm> paymentTmObservableList = FXCollections.observableArrayList();
     PaymentBo paymentBo = (PaymentBo) BoFactory.getBoFactory().getBoType(BoFactory.BoType.PAYMENT);
+    ArrayList<Payment> paymentArrayList = new ArrayList<>();
+    ObservableList<String> paymentObservableList = FXCollections.observableArrayList();
 
     public void initialize() throws IOException {
         generateNewId();
         getAllStudentCourses();
         getAllStudent();
+        getAllPayment();
         searchStudent();
+        searchPayment();
         setDate();
-        setTable();
         setCellValueFactory();
     }
 
     private void setTable() {
 
+    }
+    private void searchPayment() {
+        for (Payment payment : paymentArrayList) {
+            paymentObservableList.add(String.valueOf(payment.getStudent_course().getStudent_course_id()));
+        }
+        comboPayHistory.setItems(paymentObservableList);
+    }
+
+    private void getAllPayment() throws IOException {
+        List<Payment> paymentList = paymentBo.getPaymentList();
+        paymentArrayList = (ArrayList<Payment>) paymentList;
     }
 
     private void setCellValueFactory() {
@@ -302,6 +317,17 @@ public class PaymentFormController {
 
     }
 
+    @FXML
     public void comboPayHistoryOnAction(ActionEvent actionEvent) {
+        Long stu_cou_id = Long.valueOf(String.valueOf(comboPayHistory.getValue()));
+
+        for (Payment payment : paymentArrayList) {
+            if(payment.getStudent_course().getStudent_course_id().equals(stu_cou_id)) {
+                lblBalanceAmount.setText(String.valueOf(payment.getBalance_amount()));
+                lblDate.setText(payment.getPay_date());
+                lblStatus.setText(payment.getStatus());
+                lblUpfrontAmount.setText(String.valueOf(payment.getUpfront_amount()));
+            }
+        }
     }
 }

@@ -91,7 +91,6 @@ public class UserFormController {
     ObservableList<UserTm> userTmObservableList = FXCollections.observableArrayList();
 
     public void initialize() throws IOException {
-//        setDate();
         setCellValueFactory();
         setTable();
         selectTableRow();
@@ -130,10 +129,6 @@ public class UserFormController {
         colContact.setCellValueFactory(new PropertyValueFactory<>("user_phone"));
     }
 
-//    private void setDate() {
-//        LocalDate now = LocalDate.now();
-//        txtDate.setText(String.valueOf(now));
-//    }
 
     private void selectTableRow() {
         tblUser.setOnMouseClicked(mouseEvent -> {
@@ -258,11 +253,6 @@ public class UserFormController {
 
     @FXML
     void txtContactOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void txtDateOnAction(ActionEvent event) {
 
     }
 

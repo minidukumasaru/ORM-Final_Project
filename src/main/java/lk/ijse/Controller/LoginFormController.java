@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -32,17 +33,32 @@ public class LoginFormController {
     String username;
     @FXML
     void btnLoginOnAction(ActionEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/MainForm.fxml"));
+        username = txtUsername.getText();
+        String password = txtPassword.getText();
+
+        boolean isAuthenticated = userDao.checkCredential(username, password);
+
+        if (isAuthenticated) {
+            navigateToTheDashboard();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "Invalid username or password!").show();
+        }
+    }
+    private void navigateToTheDashboard() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/MainForm.fxml"));
         AnchorPane anchorPane = loader.load();
+
+        MainFormController mainFormController = loader.getController();
+        mainFormController.setUsername(username);
 
         Scene scene = new Scene(anchorPane);
         Stage stage = new Stage();
 
         stage.setScene(scene);
-        stage.setScene(anchorPane.getScene());
         stage.centerOnScreen();
-        stage.setTitle("dashboard Form");
+        stage.setTitle("Dashboard Form");
         stage.show();
+
         anpDashboard.getScene().getWindow().hide();
     }
 

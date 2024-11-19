@@ -1,14 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="lk.ijse.Controller.DashboardFormController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DashboardFormController">
+   <children>
+      <AnchorPane fx:id="anpDash" layoutX="-1.0" layoutY="1.0" prefHeight="800.0" prefWidth="1020.0">
+         <children>
+            <Text layoutX="348.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD FORM">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Text>
+            <Label fx:id="program" layoutX="192.0" layoutY="168.0" prefHeight="88.0" prefWidth="104.0" style="-fx-background-color: grey;" text="Label" />
+            <Label fx:id="lblStudent" layoutX="369.0" layoutY="168.0" prefHeight="88.0" prefWidth="104.0" style="-fx-background-color: grey;" text="Label" />
+            <Label fx:id="lblUser" layoutX="539.0" layoutY="168.0" prefHeight="88.0" prefWidth="104.0" style="-fx-background-color: grey;" text="Label" />
+            <Text layoutX="210.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="course count" />
+            <Text layoutX="383.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="student count" />
+            <Text layoutX="568.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user count" />
+         </children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

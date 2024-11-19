@@ -214,4 +214,40 @@ public class UserDaoImpl implements UserDao {
             return null; // Handle or log the exception appropriately
         }
     }
+
+    @Override
+    public int getUserCount() {
+        int userCount = 0;
+        Session session = null;
+
+        try {
+            // Get the session from the factory
+            session = FactoryConfiguration.getInstance().getSession();
+            session.beginTransaction();
+
+            // HQL query to count the number of courses
+            String hql = "SELECT COUNT(u) FROM User u";
+            Query<Long> query = session.createQuery(hql, Long.class);
+
+            // Get the result and cast to int
+            Long countResult = query.uniqueResult();
+            if (countResult != null) {
+                userCount = countResult.intValue();
+            }
+
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            if (session != null && session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace(); // For debugging
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+
+        return userCount;
+
+    }
 }

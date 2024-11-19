@@ -148,7 +148,6 @@ public class StudentFormController {
 
     private void setTable() throws IOException {
         studentTmObservableList.clear();
-        String userId = comboUser.getValue();
         List<Student> studentList = studentBo.getStudentList();
         for (Student student : studentList) {
             StudentTm studentTm = new StudentTm(
@@ -231,6 +230,8 @@ public class StudentFormController {
                 new Alert(Alert.AlertType.ERROR, "SQL Error").show();
             }
         }
+        setTable();
+        generateNewId();
     }
 
     @FXML
@@ -259,7 +260,6 @@ public class StudentFormController {
             Student newStudent = studentDao.getStudentById(studentId);
             registerStudentForCourse(newStudent);
         }
-        System.out.println("hellooooooooooo");
         setTable();
         new Alert(Alert.AlertType.INFORMATION, "Student Added With Course Successfully!").show();
     }

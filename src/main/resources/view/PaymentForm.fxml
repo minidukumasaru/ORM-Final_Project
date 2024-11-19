@@ -89,7 +89,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Text>
-            <Label fx:id="lblBalanceAmount" layoutX="661.0" layoutY="230.0" prefHeight="27.0" prefWidth="136.0" text="Label">
+            <Label fx:id="lblBalanceAmount" layoutX="661.0" layoutY="230.0" prefHeight="27.0" prefWidth="136.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -105,12 +105,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Text>
-            <Label fx:id="lblUpfrontAmount" layoutX="663.0" layoutY="276.0" prefHeight="26.0" prefWidth="136.0" text="Label">
+            <Label fx:id="lblUpfrontAmount" layoutX="663.0" layoutY="276.0" prefHeight="26.0" prefWidth="136.0">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="lblStatus" layoutX="662.0" layoutY="319.0" prefHeight="26.0" prefWidth="136.0" text="Label">
+            <Label fx:id="lblStatus" layoutX="662.0" layoutY="319.0" prefHeight="26.0" prefWidth="136.0">
                <font>
                   <Font size="14.0" />
                </font>
@@ -125,7 +125,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Text>
-            <Label fx:id="lblDate" layoutX="661.0" layoutY="361.0" prefHeight="26.0" prefWidth="152.0" text="Label">
+            <Label fx:id="lblDate" layoutX="661.0" layoutY="361.0" prefHeight="26.0" prefWidth="152.0">
                <font>
                   <Font size="14.0" />
                </font>

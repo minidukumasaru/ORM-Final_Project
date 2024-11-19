@@ -1,13 +1,20 @@
 package lk.ijse.Controller;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+import lk.ijse.Dao.Custom.UserDao;
+import lk.ijse.Dao.DaoFactory;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class MainFormController {
 
@@ -36,6 +43,28 @@ public class MainFormController {
     @FXML
     private Label lblDate;
 
+    UserDao userDao = (UserDao) DaoFactory.getDaoFactory().getDaoType(DaoFactory.DaoType.USER);
+    String username;
+
+    public void initialize() throws IOException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd           HH:mm:ss");
+
+        // Create a timeline that updates the label every second
+        Timeline clock = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            String formattedDateTime = LocalDateTime.now().format(formatter);
+            lblDate.setText(formattedDateTime);
+        }));
+
+        clock.setCycleCount(Timeline.INDEFINITE); // Run indefinitely
+        clock.play(); // Start the clock
+        loadDashboardForm();
+    }
+    public void loadDashboardForm() throws IOException {
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/DashboardForm.fxml"));
+
+        anpMain.getChildren().clear();
+        anpMain.getChildren().add(dashboardPane);
+    }
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
         AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/MainForm.fxml"));
@@ -77,6 +106,27 @@ public class MainFormController {
         anpMain.getChildren().add(userPane);
     }
 
-    public void btnSettingsOnAction(ActionEvent actionEvent) {
+    public void btnSettingsOnAction(ActionEvent actionEvent) throws IOException {
+        AnchorPane settingPane = FXMLLoader.load(this.getClass().getResource("/view/SettingForm.fxml"));
+
+        anpMain.getChildren().clear();
+        anpMain.getChildren().add(settingPane);
+    }
+    public void setUsername(String username) {
+        this.username = username;
+        String userRole = getUserRole(username);
+        setUserRole(userRole);
+    }
+
+    private String getUserRole(String username) {
+        return userDao.getUserRole(username); // Ensure getUserRole(username) exists in UserDao and returns the role as a String
+    }
+
+    private void setUserRole(String userRole) {
+        if (userRole != null) {
+            lblCurrentUser.setText(userRole); // Display the user role on the label
+        } else {
+            lblCurrentUser.setText("Role not found");
+        }
     }
 }
