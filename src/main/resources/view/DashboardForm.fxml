@@ -1,27 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DashboardFormController">
+<AnchorPane prefHeight="800.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.Controller.DashboardFormController">
    <children>
-      <AnchorPane fx:id="anpDash" layoutX="-1.0" layoutY="1.0" prefHeight="800.0" prefWidth="1020.0">
+      <ImageView fitHeight="800.0" fitWidth="1020.0">
+         <image>
+            <Image url="@../images/dashboard.png" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="anpDash" layoutX="90.0" layoutY="47.0" opacity="0.8" prefHeight="700.0" prefWidth="820.0" style="-fx-background-color: white;">
          <children>
-            <Text layoutX="348.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD FORM">
+            <Text layoutX="266.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DASHBOARD FORM">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <Label fx:id="program" layoutX="192.0" layoutY="168.0" prefHeight="88.0" prefWidth="104.0" style="-fx-background-color: grey;" text="Label" />
-            <Label fx:id="lblStudent" layoutX="369.0" layoutY="168.0" prefHeight="88.0" prefWidth="104.0" style="-fx-background-color: grey;" text="Label" />
-            <Label fx:id="lblUser" layoutX="539.0" layoutY="168.0" prefHeight="88.0" prefWidth="104.0" style="-fx-background-color: grey;" text="Label" />
-            <Text layoutX="210.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="course count" />
-            <Text layoutX="383.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="student count" />
-            <Text layoutX="568.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user count" />
+            <Label layoutX="91.0" layoutY="209.0" prefHeight="141.0" prefWidth="158.0" style="-fx-background-color: grey; -fx-background-radius: 20;" />
+            <Label layoutX="592.0" layoutY="214.0" prefHeight="141.0" prefWidth="158.0" style="-fx-background-color: grey; -fx-background-radius: 20;" />
+            <Label layoutX="345.0" layoutY="212.0" prefHeight="141.0" prefWidth="158.0" style="-fx-background-color: grey; -fx-background-radius: 20;" />
+            <Label fx:id="program" layoutX="147.0" layoutY="246.0" prefHeight="67.0" prefWidth="84.0" style="-fx-background-color: grey;" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font></Label>
+            <Label fx:id="lblStudent" layoutX="401.0" layoutY="248.0" prefHeight="67.0" prefWidth="84.0" style="-fx-background-color: grey;" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font></Label>
+            <Label fx:id="lblUser" layoutX="650.0" layoutY="246.0" prefHeight="67.0" prefWidth="84.0" style="-fx-background-color: grey;" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font></Label>
+            <Text layoutX="97.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="course count">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font></Text>
+            <Text layoutX="349.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="student count">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font></Text>
+            <Text layoutX="600.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="user count">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font></Text>
          </children>
       </AnchorPane>
+      <Line endX="272.0" layoutX="420.0" layoutY="134.0" startX="-108.0" stroke="RED" strokeWidth="3.0" />
+      <Line endX="-85.0" endY="-64.0" layoutX="430.0" layoutY="144.0" startX="-85.0" strokeWidth="3.0" />
    </children>
 </AnchorPane>

@@ -171,7 +171,7 @@ public class StudentDaoImpl implements StudentDao {
             session.beginTransaction();
 
             // HQL query to count the number of courses
-            String hql = "SELECT COUNT(s) FROM Student s";
+            String hql = "SELECT COUNT(s) FROM Student s where status = 1";
             Query<Long> query = session.createQuery(hql, Long.class);
 
             // Get the result and cast to int

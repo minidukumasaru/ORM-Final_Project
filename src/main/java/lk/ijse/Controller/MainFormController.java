@@ -67,7 +67,7 @@ public class MainFormController {
     }
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
-        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/MainForm.fxml"));
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/DashboardForm.fxml"));
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(dashboardPane);
