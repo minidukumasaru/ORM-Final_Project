@@ -25,10 +25,10 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="txtDuration" layoutX="157.0" layoutY="274.0" onAction="#txtDurationOnAction" prefHeight="35.0" prefWidth="181.0" promptText="duartion" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtFree" layoutX="410.0" layoutY="274.0" onAction="#txtFreeOnAction" prefHeight="35.0" prefWidth="181.0" promptText="fee" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtName" layoutX="410.0" layoutY="192.0" onAction="#txtNameOnAction" prefHeight="35.0" prefWidth="181.0" promptText="name" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtId" layoutX="155.0" layoutY="192.0" onAction="#txtIdOnAction" prefHeight="35.0" prefWidth="181.0" promptText="id" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtDuration" layoutX="157.0" layoutY="274.0" onAction="#txtDurationOnAction" onKeyReleased="#txtDurationOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="duartion" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtFree" layoutX="410.0" layoutY="274.0" onAction="#txtFreeOnAction" onKeyReleased="#txtCourseFeeOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="fee" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtName" layoutX="410.0" layoutY="192.0" onAction="#txtNameOnAction" onKeyReleased="#txtNameOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="name" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtId" layoutX="155.0" layoutY="192.0" onAction="#txtIdOnAction" onKeyReleased="#txtIdOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="id" style="-fx-background-radius: 5;" />
             <Button fx:id="btnSave" layoutX="658.0" layoutY="257.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="35.0" prefWidth="102.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: #2D7DBC;" text="SAVE">
                <font>
                   <Font name="System Bold" size="15.0" />

@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.Dao.Custom.UserDao;
 import lk.ijse.Dao.DaoFactory;
+import lk.ijse.util.Regex;
+import lk.ijse.util.TextFieldType;
 
 import java.io.IOException;
 
@@ -49,11 +52,12 @@ public class LoginFormController {
         AnchorPane anchorPane = loader.load();
 
         MainFormController mainFormController = loader.getController();
+        String userRole = userDao.getUserRole(username);  // Fetch the role from the database
         mainFormController.setUsername(username);
+        mainFormController.setAccess(userRole);  // Pass the correct role
 
         Scene scene = new Scene(anchorPane);
         Stage stage = new Stage();
-
         stage.setScene(scene);
         stage.centerOnScreen();
         stage.setTitle("Dashboard Form");
@@ -63,5 +67,20 @@ public class LoginFormController {
     }
 
     public void btnForgotPasswordOnAction(ActionEvent actionEvent) {
+    }
+
+    public void txtUserNameOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtPasswordOnKeyReleased(KeyEvent keyEvent) {
+
+    }
+
+    public void txtUserNameOnAction(ActionEvent actionEvent) {
+        txtPassword.requestFocus();
+    }
+
+    public void txtPasswordOnAction(ActionEvent actionEvent) throws IOException {
+        btnLoginOnAction(actionEvent);
     }
 }

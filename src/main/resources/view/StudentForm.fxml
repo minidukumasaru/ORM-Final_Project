@@ -26,11 +26,11 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="txtId" layoutX="141.0" layoutY="129.0" onAction="#txtIdOnAction" prefHeight="35.0" prefWidth="181.0" promptText="id" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
-            <TextField fx:id="txtAddress" layoutX="141.0" layoutY="196.0" onAction="#txtAddressOnAction" prefHeight="35.0" prefWidth="181.0" promptText="address" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
-            <TextField fx:id="txtDate" layoutX="141.0" layoutY="263.0" onAction="#txtDateOnAction" prefHeight="35.0" prefWidth="181.0" promptText="date" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
-            <TextField fx:id="txtContact" layoutX="141.0" layoutY="400.0" onAction="#txtContactOnAction" prefHeight="35.0" prefWidth="181.0" promptText="contact" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
-            <TextField fx:id="txtName" layoutX="141.0" layoutY="332.0" onAction="#txtNameOnAction" prefHeight="35.0" prefWidth="181.0" promptText="name" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="txtId" layoutX="141.0" layoutY="129.0" onAction="#txtIdOnAction" onKeyReleased="#txtStudentIdOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="id" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="txtAddress" layoutX="141.0" layoutY="196.0" onAction="#txtAddressOnAction" onKeyReleased="#txtAddressOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="address" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="txtDate" layoutX="141.0" layoutY="263.0" onAction="#txtDateOnAction" onKeyReleased="#txtDateOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="date" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="txtContact" layoutX="141.0" layoutY="400.0" onAction="#txtContactOnAction" onKeyReleased="#txtContactOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="contact" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
+            <TextField fx:id="txtName" layoutX="141.0" layoutY="332.0" onAction="#txtNameOnAction" onKeyReleased="#txtStudentNameOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="name" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
             <ComboBox fx:id="comboUser" layoutX="404.0" layoutY="129.0" onAction="#comboUserOnAction" prefHeight="35.0" prefWidth="181.0" promptText="user" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
             <ComboBox fx:id="comboCourse" layoutX="404.0" layoutY="196.0" onAction="#comboCourseOnAction" prefHeight="35.0" prefWidth="181.0" promptText="course" style="-fx-border-radius: 5; -fx-background-radius: 5;" />
             <TextField fx:id="txtSearch" layoutX="569.0" layoutY="42.0" prefHeight="35.0" prefWidth="236.0" promptText="search" style="-fx-border-radius: 5; -fx-border-color: blue;" />

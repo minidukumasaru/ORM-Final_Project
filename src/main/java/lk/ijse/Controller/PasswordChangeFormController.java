@@ -7,12 +7,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Bo.BoFactory;
 import lk.ijse.Bo.Custom.UserBo;
 import lk.ijse.Dao.Custom.UserDao;
 import lk.ijse.Dao.DaoFactory;
 import lk.ijse.Entity.User;
+import lk.ijse.util.Regex;
+import lk.ijse.util.TextFieldType;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.io.IOException;
@@ -117,9 +120,59 @@ public class PasswordChangeFormController {
     @FXML
     void txtSearchOnAction(ActionEvent event) {
         searchUsername();
+        txtNewPassword.requestFocus();
     }
     private void clearPasswordFields() {
         txtNewPassword.clear();
         txtConfirmPassword.clear();
+    }
+
+    public void txtNewPasswordOnAction(ActionEvent actionEvent) {
+        txtConfirmPassword.requestFocus();
+    }
+
+    public void txtConfirmPasswordOnAction(ActionEvent actionEvent) {
+        txtEmail.requestFocus();
+    }
+
+    public void txtEmailOnAction(ActionEvent actionEvent) {
+        txtContact.requestFocus();
+    }
+
+    public void txtContactOnAction(ActionEvent actionEvent) {
+        txtRole.requestFocus();
+    }
+
+    public void txtRoleOnAction(ActionEvent actionEvent) {
+        btnPasswordResetOnAction(actionEvent);
+    }
+
+    public void txtUserNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.NAME, txtSearch);
+    }
+
+    public void txtNewPasswordOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtConfirmPasswordOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtEmailOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.NAME, txtEmail);
+    }
+
+    public void txtContactOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.CONTACT, txtContact);
+    }
+
+
+    public void txtRoleOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.NAME, txtRole);
+    }
+    public boolean isValidated() {
+        if(!Regex.setTextColor(TextFieldType.NAME,txtEmail)) return false;
+        if(!Regex.setTextColor(TextFieldType.NAME,txtRole)) return false;
+        if(!Regex.setTextColor(TextFieldType.CONTACT,txtContact)) return false;
+        return true;
     }
 }

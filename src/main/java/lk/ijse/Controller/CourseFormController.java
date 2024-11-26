@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Bo.BoFactory;
 import lk.ijse.Bo.Custom.CourseBo;
@@ -16,6 +17,8 @@ import lk.ijse.Dao.DaoFactory;
 import lk.ijse.Dto.CourseDto;
 import lk.ijse.Entity.Course;
 import lk.ijse.EntityTm.CourseTm;
+import lk.ijse.util.Regex;
+import lk.ijse.util.TextFieldType;
 
 import java.io.IOException;
 import java.util.List;
@@ -208,22 +211,40 @@ public class CourseFormController {
 
     @FXML
     void txtDurationOnAction(ActionEvent event) {
-
+        txtFree.requestFocus();
     }
 
     @FXML
-    void txtFreeOnAction(ActionEvent event) {
-
+    void txtFreeOnAction(ActionEvent event) throws IOException {
+        btnSaveOnAction(event);
     }
 
     @FXML
     void txtIdOnAction(ActionEvent event) {
-
+        txtName.requestFocus();
     }
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
-
+        txtDuration.requestFocus();
     }
 
+    public void txtIdOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.NAME, txtName);
+    }
+
+    public void txtDurationOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtCourseFeeOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.PRICE, txtFree);
+    }
+    public boolean isValidated() {
+        if(!Regex.setTextColor(TextFieldType.NAME,txtName)) return false;
+        if(!Regex.setTextColor(TextFieldType.PRICE,txtFree)) return false;
+        return true;
+    }
 }

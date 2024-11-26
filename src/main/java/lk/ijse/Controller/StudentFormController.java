@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Bo.BoFactory;
 import lk.ijse.Bo.Custom.CourseBo;
@@ -24,6 +25,8 @@ import lk.ijse.Entity.Student;
 import lk.ijse.Entity.Student_Course;
 import lk.ijse.Entity.User;
 import lk.ijse.EntityTm.StudentTm;
+import lk.ijse.util.Regex;
+import lk.ijse.util.TextFieldType;
 
 import java.io.IOException;
 import java.sql.Date;
@@ -230,8 +233,6 @@ public class StudentFormController {
                 new Alert(Alert.AlertType.ERROR, "SQL Error").show();
             }
         }
-        setTable();
-        generateNewId();
     }
 
     @FXML
@@ -303,20 +304,16 @@ public class StudentFormController {
         String contact = txtContact.getText();
         Date date = Date.valueOf(txtDate.getText());
 
-        // Retrieve the associated user (consider whether `id` or another identifier is used)
         User user = userDao.getUserById(comboUser.getValue());
 
-        // Create a StudentDto object with the updated data
         StudentDto studentDto = new StudentDto(id, name, address, contact, date, user);
 
-        // Call the update method and display the appropriate message
         if (studentBo.update(studentDto)) {
             new Alert(Alert.AlertType.INFORMATION, "Student Updated Successfully").show();
         } else {
             new Alert(Alert.AlertType.ERROR, "Error updating student details").show();
         }
 
-        // Refresh the table and generate a new ID for subsequent operations
         setTable();
         generateNewId();
 
@@ -367,7 +364,7 @@ public class StudentFormController {
 
     @FXML
     void txtAddressOnAction(ActionEvent event) {
-
+        txtDate.requestFocus();
     }
 
     @FXML
@@ -377,17 +374,41 @@ public class StudentFormController {
 
     @FXML
     void txtDateOnAction(ActionEvent event) {
-
+        txtName.requestFocus();
     }
 
     @FXML
     void txtIdOnAction(ActionEvent event) {
-
+        txtAddress.requestFocus();
     }
 
     @FXML
     void txtNameOnAction(ActionEvent event) {
+        txtContact.requestFocus();
 
     }
 
+    public void txtStudentIdOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtAddressOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.ADDRESS,txtAddress);
+    }
+
+    public void txtDateOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtContactOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.CONTACT, txtContact);
+    }
+
+    public void txtStudentNameOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.NAME, txtName);
+    }
+    public boolean isValidated() {
+        if(!Regex.setTextColor(TextFieldType.NAME,txtName)) return false;
+        if(!Regex.setTextColor(TextFieldType.ADDRESS,txtAddress)) return false;
+        if(!Regex.setTextColor(TextFieldType.CONTACT,txtContact)) return false;
+        return true;
+    }
 }

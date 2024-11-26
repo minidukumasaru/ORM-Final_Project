@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Bo.BoFactory;
 import lk.ijse.Bo.Custom.PaymentBo;
@@ -20,6 +21,8 @@ import lk.ijse.Entity.Payment;
 import lk.ijse.Entity.Student;
 import lk.ijse.Entity.Student_Course;
 import lk.ijse.EntityTm.PaymentTm;
+import lk.ijse.util.Regex;
+import lk.ijse.util.TextFieldType;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -117,9 +120,6 @@ public class PaymentFormController {
         setCellValueFactory();
     }
 
-    private void setTable() {
-
-    }
     private void searchPayment() {
         for (Payment payment : paymentArrayList) {
             paymentObservableList.add(String.valueOf(payment.getStudent_course().getStudent_course_id()));
@@ -171,66 +171,7 @@ public class PaymentFormController {
         txtId.setText(nextId);
         return nextId;
     }
-    @FXML
-    void btnConfirmOnAction(ActionEvent event) {
-        if (txtId.getText().isEmpty() || comboCourses.getValue() == null || txtPayAmount.getText().isEmpty()) {
-            new Alert(Alert.AlertType.WARNING, "Please fill in all required fields").show();
-            return;
-        }
 
-        // Retrieve and process input data
-        String id = txtId.getText();
-        String courseId = comboCourses.getValue();
-        String studentId = comboStudent.getValue();
-        String status = txtStatus.getText();
-        Long stu_cou_id = Long.valueOf(txtStuCouDetail.getText());
-        double upFront;
-        double getFee;
-
-        try {
-            upFront = Double.parseDouble(txtPayAmount.getText());
-            getFee = Double.parseDouble(txtCoursefee.getText());
-        } catch (NumberFormatException e) {
-            new Alert(Alert.AlertType.ERROR, "Invalid number format for payment or course fee").show();
-            return;
-        }
-
-        // Calculate balance payment
-        double balancePay = getFee - upFront;
-
-        if (balancePay < 0) {
-            new Alert(Alert.AlertType.WARNING, "Payment exceeds the course fee").show();
-            return;
-        }
-
-        // Create a "Remove" button for the row
-        Button btnRemove = new Button("Remove");
-        btnRemove.setCursor(Cursor.HAND);
-
-        // Set up the event for the "Remove" button
-        btnRemove.setOnAction((e) -> {
-            ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
-            ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-            Optional<ButtonType> type = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove?", yes, no).showAndWait();
-            if (type.orElse(no) == yes) {
-                int selectedIndex = tblPayment.getSelectionModel().getSelectedIndex();
-                if (selectedIndex >= 0) {
-                    paymentTmObservableList.remove(selectedIndex);
-                    tblPayment.refresh();
-                } else {
-                    new Alert(Alert.AlertType.WARNING, "Please select an item to remove").show();
-                }
-            }
-        });
-
-        // Add new payment record to the table (assuming you have a `PaymentTm` class)
-        PaymentTm paymentTm = new PaymentTm(id, status, upFront, balancePay, studentId,courseId,stu_cou_id,btnRemove);
-        paymentTmObservableList.add(paymentTm);
-        tblPayment.setItems(paymentTmObservableList);
-        tblPayment.refresh();
-
-    }
 
     @FXML
     void btnSaveOnAction(ActionEvent event) throws IOException {
@@ -255,8 +196,28 @@ public class PaymentFormController {
 
         new Alert(Alert.AlertType.INFORMATION, "Payment saved successfully").show();
 
+        if (selectedPayment.getBalance_amount() == 0) {
+            new Alert(Alert.AlertType.INFORMATION, "Course fee is fully paid!").show();
+        }
+
+        getAllPayment();
+
+
     }
 
+
+
+
+
+    @FXML
+    void txtDateOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void txtIdOnAction(ActionEvent event) {
+
+    }
     @FXML
     void comboCoursesOnAction(ActionEvent event) {
         String selectedCourseName = comboCourses.getValue();
@@ -277,44 +238,117 @@ public class PaymentFormController {
     }
 
     @FXML
+    void txtPayAmountOnAction(ActionEvent event) {
+        txtStatus.requestFocus();
+    }
+
+    @FXML
+    void txtStatusOnAction(ActionEvent event) {
+        txtPayAmount.requestFocus();
+    }
+
+    @FXML
+    void btnConfirmOnAction(ActionEvent event) {
+        if (txtId.getText().isEmpty() || comboCourses.getValue() == null || txtPayAmount.getText().isEmpty()) {
+            new Alert(Alert.AlertType.WARNING, "Please fill in all required fields").show();
+            return;
+        }
+
+        try {
+            double payAmount = Double.parseDouble(txtPayAmount.getText());
+            long studentCourseId = Long.parseLong(txtStuCouDetail.getText());
+
+            double currentBalance = getCurrentBalance(studentCourseId);
+
+            if (payAmount > currentBalance) {
+                new Alert(Alert.AlertType.WARNING, "Payment exceeds the remaining balance").show();
+                return;
+            }
+
+            double newBalance = currentBalance - payAmount;
+
+            Button btnRemove = new Button("Remove");
+            btnRemove.setCursor(Cursor.HAND);
+
+            btnRemove.setOnAction((e) -> {
+                ButtonType yes = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+                ButtonType no = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+                Optional<ButtonType> type = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to remove?", yes, no).showAndWait();
+                if (type.orElse(no) == yes) {
+                    int selectedIndex = tblPayment.getSelectionModel().getSelectedIndex();
+                    if (selectedIndex >= 0) {
+                        paymentTmObservableList.remove(selectedIndex);
+                        tblPayment.refresh();
+                    } else {
+                        new Alert(Alert.AlertType.WARNING, "Please select an item to remove").show();
+                    }
+                }
+            });
+
+            PaymentTm paymentTm = new PaymentTm(
+                    txtId.getText(),
+                    txtStatus.getText(),
+                    payAmount,
+                    newBalance,
+                    comboStudent.getValue(),
+                    comboCourses.getValue(),
+                    studentCourseId,
+                    btnRemove
+            );
+
+            paymentTmObservableList.add(paymentTm);
+            tblPayment.setItems(paymentTmObservableList);
+            tblPayment.refresh();
+
+            updateStudentCourseBalance(studentCourseId, newBalance);
+
+            if (newBalance == 0) {
+                new Alert(Alert.AlertType.INFORMATION, "Course fee fully paid!").show();
+            }
+
+        } catch (NumberFormatException e) {
+            new Alert(Alert.AlertType.ERROR, "Invalid input! Please enter valid numbers for payment and course fee.").show();
+        } catch (Exception e) {
+            new Alert(Alert.AlertType.ERROR, "An unexpected error occurred: " + e.getMessage()).show();
+        }
+    }
+    private double getCurrentBalance(long studentCourseId) {
+        double courseFee = Double.parseDouble(txtCoursefee.getText());
+        double totalPaidAmount = 0;
+
+        for (Payment payment : paymentArrayList) {
+            if (payment.getStudent_course().getStudent_course_id() == studentCourseId) {
+                totalPaidAmount += payment.getPay_amount();
+            }
+        }
+        double remainingBalance = courseFee - totalPaidAmount;
+        return Math.max(remainingBalance, 0);
+    }
+    private void updateStudentCourseBalance(long studentCourseId, double newBalance) {
+        for (Payment payment : paymentArrayList) {
+            if (payment.getStudent_course().getStudent_course_id() == studentCourseId) {
+                payment.setBalance_amount(newBalance);
+                break;
+            }
+        }
+    }
+    @FXML
     void comboStudentOnAction(ActionEvent event) {
         String studentId = comboStudent.getValue();
         ObservableList<String> studentCourseObservableList = FXCollections.observableArrayList();
 
-        // Loop through student courses and add matching course names to the list
         for (Student_Course studentCourse : studentCourseArrayList) {
             if (studentCourse.getStudent().getStu_id().equals(studentId)) {
                 studentCourseObservableList.add(studentCourse.getCourse().getCourse_name());
             }
         }
 
-        // Set the items for the comboCourses ComboBox
-        comboCourses.setItems(studentCourseObservableList);
 
-        // Optionally, set the first course as the selected value if the list is not empty
+        comboCourses.setItems(studentCourseObservableList);
         if (!studentCourseObservableList.isEmpty()) {
             comboCourses.setValue(studentCourseObservableList.get(0));
         }
-    }
-
-    @FXML
-    void txtDateOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void txtIdOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void txtPayAmountOnAction(ActionEvent event) {
-
-    }
-
-    @FXML
-    void txtStatusOnAction(ActionEvent event) {
-
     }
 
     @FXML
@@ -329,5 +363,27 @@ public class PaymentFormController {
                 lblUpfrontAmount.setText(String.valueOf(payment.getUpfront_amount()));
             }
         }
+    }
+
+    public void txtPaymentIdOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtStatusOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtCourseFeeOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.PRICE, txtCoursefee);
+    }
+
+    public void txtAmountOnKeyReleased(KeyEvent keyEvent) {
+        Regex.setTextColor(TextFieldType.PRICE, txtPayAmount);
+    }
+
+    public void txtDateOnKeyReleased(KeyEvent keyEvent) {
+    }
+    public boolean isValidated() {
+        if(!Regex.setTextColor(TextFieldType.PRICE,txtCoursefee)) return false;
+        if(!Regex.setTextColor(TextFieldType.PRICE,txtPayAmount)) return false;
+        return true;
     }
 }

@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.Bo.BoFactory;
 import lk.ijse.Bo.Custom.UserBo;
@@ -252,33 +253,50 @@ public class UserFormController {
     }
 
     @FXML
-    void txtContactOnAction(ActionEvent event) {
-
+    void txtContactOnAction(ActionEvent event) throws IOException {
+        btnSaveOnAction(event);
     }
 
     @FXML
     void txtEmailOnAction(ActionEvent event) {
-
+        txtPassword.requestFocus();
     }
 
     @FXML
     void txtPasswordOnAction(ActionEvent event) {
-
+        txtRole.requestFocus();
     }
 
     @FXML
     void txtRoleOnAction(ActionEvent event) {
-
+        txtContact.requestFocus();
     }
 
     @FXML
     void txtUserIdOnAction(ActionEvent event) {
-
+        txtUsername.requestFocus();
     }
 
     @FXML
     void txtUsernameOnAction(ActionEvent event) {
-
+        txtEmail.requestFocus();
     }
 
+    public void txtUserIdOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtUserNameOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtEmailOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtPasswordOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtContactOnKeyReleased(KeyEvent keyEvent) {
+    }
+
+    public void txtRoleOnKeyReleased(KeyEvent keyEvent) {
+    }
 }

@@ -27,10 +27,10 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="txtStatus" layoutX="45.0" layoutY="235.0" onAction="#txtStatusOnAction" prefHeight="35.0" prefWidth="181.0" promptText="status" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtId" layoutX="45.0" layoutY="156.0" onAction="#txtIdOnAction" prefHeight="35.0" prefWidth="181.0" promptText="id" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtPayAmount" layoutX="45.0" layoutY="393.0" onAction="#txtPayAmountOnAction" prefHeight="35.0" prefWidth="181.0" promptText="payAmount" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtDate" layoutX="269.0" layoutY="156.0" onAction="#txtDateOnAction" prefHeight="35.0" prefWidth="181.0" promptText="date" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtStatus" layoutX="45.0" layoutY="235.0" onAction="#txtStatusOnAction" onKeyReleased="#txtStatusOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="status" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtId" layoutX="45.0" layoutY="156.0" onAction="#txtIdOnAction" onKeyReleased="#txtPaymentIdOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="id" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtPayAmount" layoutX="45.0" layoutY="393.0" onAction="#txtPayAmountOnAction" onKeyReleased="#txtAmountOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="payAmount" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtDate" layoutX="269.0" layoutY="156.0" onAction="#txtDateOnAction" onKeyReleased="#txtDateOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="date" style="-fx-background-radius: 5;" />
             <ComboBox fx:id="comboCourses" layoutX="269.0" layoutY="315.0" onAction="#comboCoursesOnAction" prefHeight="35.0" prefWidth="181.0" promptText="courses" style="-fx-background-radius: 5;" />
             <TableView fx:id="tblPayment" layoutX="17.0" layoutY="461.0" prefHeight="215.0" prefWidth="788.0">
                <columns>
@@ -44,7 +44,7 @@
                   <TableColumn fx:id="colBtnRemove" prefWidth="79.0" text="REMOVE" />
                </columns>
             </TableView>
-            <TextField fx:id="txtCoursefee" layoutX="45.0" layoutY="315.0" prefHeight="35.0" prefWidth="181.0" promptText="coursefee" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtCoursefee" layoutX="45.0" layoutY="315.0" onKeyReleased="#txtCourseFeeOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="coursefee" style="-fx-background-radius: 5;" />
             <Button fx:id="btnSave" layoutX="688.0" layoutY="32.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="35.0" prefWidth="102.0" style="-fx-border-color: black; -fx-border-radius: 3; -fx-background-color: #2D7DBC;" text="SAVE">
                <font>
                   <Font name="System Bold Italic" size="15.0" />

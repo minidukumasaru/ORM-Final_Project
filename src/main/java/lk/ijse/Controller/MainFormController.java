@@ -72,8 +72,6 @@ public class MainFormController {
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(dashboardPane);
-        setAccess("Admin");
-        setAccess("Coordinator");
     }
     @FXML
     void btnDashboardOnAction(ActionEvent event) throws IOException {
@@ -81,8 +79,6 @@ public class MainFormController {
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(dashboardPane);
-        setAccess("Admin");
-        setAccess("Coordinator");
     }
 
     @FXML
@@ -91,7 +87,6 @@ public class MainFormController {
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(paymentPane);
-        setAccess("Admin");
 
     }
 
@@ -101,7 +96,6 @@ public class MainFormController {
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(coursePane);
-        setAccess("Admin");
     }
 
     @FXML
@@ -111,30 +105,14 @@ public class MainFormController {
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(studentPane);
-        setAccess("Admin");
-        setAccess("Coordinator");
     }
 
     @FXML
     void btnUserOnAction(ActionEvent event) throws IOException {
-        if (userAllowed) {
         AnchorPane userPane = FXMLLoader.load(this.getClass().getResource("/view/UserForm.fxml"));
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(userPane);
-    } else {
-        // Show an alert if access is denied
-        showAlert("Access Denied", "You do not have permission to access the User form.");
-    }
-    setAccess("Admin");
-    }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     public void btnSettingsOnAction(ActionEvent actionEvent) throws IOException {
@@ -142,7 +120,6 @@ public class MainFormController {
 
         anpMain.getChildren().clear();
         anpMain.getChildren().add(settingPane);
-        setAccess("Admin");
     }
     public void setUsername(String username) {
         this.username = username;
@@ -163,44 +140,64 @@ public class MainFormController {
     }
 
     public void setAccess(String userRole) {
+        if (userRole == null) {
+            lblCurrentUser.setText("No role assigned");
+            disableAllButtons();
+            return;
+        }
+
         lblCurrentUser.setText(userRole);
 
-        // Reset all access to false initially
+        resetAccessFlags();
+
+        System.out.println("User Role: " + userRole);
+
+        switch (userRole) {
+            case "Admin":
+                enableAllAccess();
+                break;
+
+            case "Coordinator":
+                studentAllowed = true;
+                break;
+
+            default:
+                System.out.println("Unknown role: " + userRole);
+                break;
+        }
+
+        updateButtonStates();
+    }
+
+    private void enableAllAccess() {
+        userAllowed = true;
+        studentAllowed = true;
+        paymentAllowed = true;
+        programAllowed = true;
+        settingsAllowed = true;
+    }
+
+    private void resetAccessFlags() {
         userAllowed = false;
         studentAllowed = false;
         paymentAllowed = false;
         programAllowed = false;
         settingsAllowed = false;
+    }
 
-        if (userRole != null) {
-            System.out.println("userRole: " + userRole);
+    private void updateButtonStates() {
+        btnUser.setDisable(!userAllowed);
+        btnStudent.setDisable(!studentAllowed);
+        btnPayment.setDisable(!paymentAllowed);
+        btnProgram.setDisable(!programAllowed);
+        btnSettings.setDisable(!settingsAllowed);
+    }
 
-            switch (userRole) {
-                case "Admin":
-                    userAllowed = true;
-                    studentAllowed = true;
-                    paymentAllowed = true;
-                    programAllowed = true;
-                    settingsAllowed = true;
-                    break;
-
-                case "Coordinator":
-                    studentAllowed = true;
-                    break;
-
-                default:
-                    // No access for other roles
-                    break;
-            }
-
-            // Enable or disable buttons based on access levels
-            btnUser.setDisable(!userAllowed);
-            btnStudent.setDisable(!studentAllowed);
-            btnPayment.setDisable(!paymentAllowed);
-            btnProgram.setDisable(!programAllowed);
-            btnSettings.setDisable(!settingsAllowed);
-        } else {
-            lblCurrentUser.setText("No role assigned");
-        }
+    private void disableAllButtons() {
+        btnUser.setDisable(true);
+        btnStudent.setDisable(true);
+        btnPayment.setDisable(true);
+        btnProgram.setDisable(true);
+        btnSettings.setDisable(true);
     }
 }

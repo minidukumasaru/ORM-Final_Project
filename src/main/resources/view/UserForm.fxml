@@ -25,11 +25,11 @@
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Text>
-            <TextField fx:id="txtRole" layoutX="393.0" layoutY="237.0" onAction="#txtRoleOnAction" prefHeight="35.0" prefWidth="181.0" promptText="role" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtContact" layoutX="388.0" layoutY="310.0" onAction="#txtContactOnAction" prefHeight="35.0" prefWidth="181.0" promptText="contact" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtPassword" layoutX="393.0" layoutY="163.0" onAction="#txtPasswordOnAction" prefHeight="35.0" prefWidth="181.0" promptText="password" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtEmail" layoutX="149.0" layoutY="309.0" onAction="#txtEmailOnAction" prefHeight="35.0" prefWidth="181.0" promptText="email" style="-fx-background-radius: 5;" />
-            <TextField fx:id="txtUsername" layoutX="149.0" layoutY="237.0" onAction="#txtUsernameOnAction" prefHeight="35.0" prefWidth="181.0" promptText="username" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtRole" layoutX="393.0" layoutY="237.0" onAction="#txtRoleOnAction" onKeyReleased="#txtRoleOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="role" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtContact" layoutX="388.0" layoutY="310.0" onAction="#txtContactOnAction" onKeyReleased="#txtContactOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="contact" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtPassword" layoutX="393.0" layoutY="163.0" onAction="#txtPasswordOnAction" onKeyReleased="#txtPasswordOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="password" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtEmail" layoutX="149.0" layoutY="309.0" onAction="#txtEmailOnAction" onKeyReleased="#txtEmailOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="email" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtUsername" layoutX="149.0" layoutY="237.0" onAction="#txtUsernameOnAction" onKeyReleased="#txtUserNameOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="username" style="-fx-background-radius: 5;" />
             <Button fx:id="btnSave" layoutX="669.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnSaveOnAction" prefHeight="35.0" prefWidth="102.0" style="-fx-background-color: #2D7DBC; -fx-border-color: black; -fx-border-radius: 3;" text="SAVE">
                <font>
                   <Font name="System Bold" size="15.0" />
@@ -51,7 +51,7 @@
                   <TableColumn fx:id="colContact" prefWidth="161.0" text="CONTACT" />
                </columns>
             </TableView>
-            <TextField fx:id="txtUserId" layoutX="149.0" layoutY="163.0" onAction="#txtUserIdOnAction" prefHeight="35.0" prefWidth="181.0" promptText="userId" style="-fx-background-radius: 5;" />
+            <TextField fx:id="txtUserId" layoutX="149.0" layoutY="163.0" onAction="#txtUserIdOnAction" onKeyReleased="#txtUserIdOnKeyReleased" prefHeight="35.0" prefWidth="181.0" promptText="userId" style="-fx-background-radius: 5;" />
             <Button fx:id="btnClear" layoutX="669.0" layoutY="206.0" mnemonicParsing="false" onAction="#btnClearOnAction" prefHeight="35.0" prefWidth="102.0" style="-fx-background-color: #F2AF3A; -fx-border-color: black; -fx-border-radius: 3;" text="CLEAR">
                <font>
                   <Font name="System Bold" size="15.0" />
